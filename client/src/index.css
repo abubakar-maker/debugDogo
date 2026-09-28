@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+html, body, #root { height: 100%; }
+body {
+  background: #05060a;
+  font-family: "Inter", system-ui, sans-serif;
+}
+.bg-app {
+  background:
+    radial-gradient(45% 35% at 10% 0%, rgba(52, 211, 153, 0.18), transparent 70%),
+    radial-gradient(40% 35% at 95% 0%, rgba(99, 102, 241, 0.20), transparent 70%),
+    #05060a;
+}
+.card {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(14px);
+}
+.brand-text {
+  background: linear-gradient(90deg, #6ee7b7, #67e8f9, #a5b4fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.fade-up { animation: fadeUp 0.3s ease both; }
+
+.scroll-thin::-webkit-scrollbar { width: 6px; height: 6px; }
+.scroll-thin::-webkit-scrollbar-thumb { background: #27272a; border-radius: 99px; }
+
+/* AI comments inside the editor */
+.ai-comment {
+  color: #fbbf24;
+  font-style: italic;
+  opacity: 0.9;
+}
+.ai-line {
+  background: rgba(251, 191, 36, 0.08);
+}
