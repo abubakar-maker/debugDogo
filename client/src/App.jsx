@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import Editor from "@monaco-editor/react";
+const API_BASE = import.meta.env.VITE_API_URL || ""
 
 const LANGS = {
   "C++": "cpp",
@@ -21,8 +22,8 @@ const EXAMPLES = [
 
 const STEPS = ["Paste", "Diagnose", "Think", "Fixed"];
 
-async function post(url, body) {
-  const res = await fetch(url, {
+async function post(post, body) {
+  const res = await fetch(API_BASE + path, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),

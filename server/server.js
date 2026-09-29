@@ -5,6 +5,7 @@ import Groq from "groq-sdk";
 
 const app = express();
 app.use(cors());
+app.use(cors({origin:"https://debug-dogo.vercel.app"}))
 app.use(express.json({ limit: "20kb" }));
 
 const client = new Groq(); // reads GROQ_API_KEY from .env
