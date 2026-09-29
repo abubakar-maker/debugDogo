@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import Editor from "@monaco-editor/react";
-const API_BASE = import.meta.env.VITE_API_URL || ""
 
 const LANGS = {
   "C++": "cpp",
@@ -21,8 +20,9 @@ const EXAMPLES = [
 ];
 
 const STEPS = ["Paste", "Diagnose", "Think", "Fixed"];
+const API_BASE = import.meta.env.VITE_API_URL || "";
 
-async function post(post, body) {
+async function post(path, body) {
   const res = await fetch(API_BASE + path, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -32,7 +32,6 @@ async function post(post, body) {
   if (!res.ok) throw new Error(d.error || "Request failed");
   return d;
 }
-
 function Terminal({ output, running }) {
   return (
     <div className="overflow-hidden rounded-xl border border-white/10 bg-black/70">
