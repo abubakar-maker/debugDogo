@@ -39,7 +39,7 @@ function Terminal({ output, running }) {
         <span>▸ terminal</span>
         <span>AI-simulated output</span>
       </div>
-      <pre className="scroll-thin h-24 overflow-auto p-3 font-mono text-xs text-emerald-400">
+      <pre className="scroll-thin h-24 overflow-auto whitespace-pre p-3 font-mono text-xs text-emerald-400">
         {running ? "Running..." : output || <span className="text-zinc-600">Press ▶ Run to see the output here.</span>}
       </pre>
     </div>
@@ -127,7 +127,7 @@ export default function App() {
         /* ignore, typing must never break */
       }
       if (id === lintId.current) setLinting(false);
-    }, 2000);
+    }, 700);
     return () => clearTimeout(t);
   }, [code, language]);
 
@@ -235,9 +235,9 @@ export default function App() {
       {/* NAV */}
       <header className="flex shrink-0 items-center justify-between gap-3 border-b border-white/5 bg-black/30 px-4 py-2 backdrop-blur-xl">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 via-cyan-400 to-indigo-400 text-base">🥋</div>
+          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-400 via-cyan-400 to-indigo-400 text-base">🐾</div>
           <div>
-            <h1 className="brand-text text-base font-extrabold leading-none">DebugDojo</h1>
+            <h1 className="brand-text text-base font-extrabold leading-none">DebugDogo</h1>
             <p className="hidden text-[10px] text-zinc-500 sm:block">Find the bug yourself. Learn for life.</p>
           </div>
         </div>
@@ -327,24 +327,23 @@ export default function App() {
               placeholder="What's going wrong? (optional)"
               className="min-w-0 flex-1 rounded-xl border border-zinc-700 bg-zinc-900/80 px-3 py-2 text-sm outline-none focus:border-emerald-400"
             />
-            {!started ? (
+            {!started && (
               <button
                 onClick={() => call("start")}
                 disabled={loading || !code.trim()}
                 className="shrink-0 rounded-xl bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-400 px-5 py-2 text-sm font-bold text-black transition hover:opacity-90 disabled:opacity-40"
               >
-                {loading ? "Analyzing..." : "🚀 Start"}
+                {loading ? "Analyzing..." : "🚀 Start Debugging"}
               </button>
-            ) : (
-              !solved && (
-                <button
-                  onClick={checkFix}
-                  disabled={loading}
-                  className="shrink-0 rounded-xl border border-emerald-400/50 bg-emerald-400/10 px-4 py-2 text-sm font-semibold text-emerald-300 transition hover:bg-emerald-400/20 disabled:opacity-50"
-                >
-                  ✅ Check my fix
-                </button>
-              )
+            )}
+            {started && !solved && (
+              <button
+                onClick={checkFix}
+                disabled={loading}
+                className="shrink-0 rounded-xl border border-emerald-400/50 bg-emerald-400/10 px-4 py-2 text-sm font-semibold text-emerald-300 transition hover:bg-emerald-400/20 disabled:opacity-50"
+              >
+                ✅ Check my fix
+              </button>
             )}
           </div>
         </section>
@@ -362,7 +361,7 @@ export default function App() {
                 <div className="mb-2 text-4xl">🐞</div>
                 Write or paste code, or tap an example.
                 <br />
-                Then press <b className="text-zinc-200">Start</b>.
+                Then press <b className="text-zinc-200">Start Debugging</b>.
                 <span className="mt-2 text-xs text-zinc-500">While you type, I will leave 🤖 comments on suspicious lines.</span>
               </div>
             )}
@@ -418,7 +417,9 @@ export default function App() {
                         <button onClick={() => applyFix(true)} className="rounded-md bg-emerald-400 px-2.5 py-1 font-semibold text-black hover:bg-emerald-300">▶ Apply & Run</button>
                       </div>
                     </div>
-                    <pre className="scroll-thin max-h-48 overflow-auto p-3 font-mono text-xs">{result.solution}</pre>
+                    <pre className="scroll-thin max-h-48 overflow-auto whitespace-pre p-3 font-mono text-xs leading-relaxed">
+                      <code>{result.solution}</code>
+                    </pre>
                   </div>
                 )}
 
@@ -464,11 +465,12 @@ export default function App() {
                 >
                   🔓 Show me the fix
                 </button>
-                {stuck && <span className="text-xs text-rose-300">Stuck? That's okay!</span>}
+              {stuck && <span className="text-xs text-rose-300">Stuck? That's okay!</span>}
               </div>
             </div>
           )}
-          </section>
-          </main>
-          </div>
-  )}
+        </section>
+      </main>
+    </div>
+  );
+}

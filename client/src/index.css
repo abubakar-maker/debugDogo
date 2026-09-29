@@ -32,7 +32,6 @@ body {
 .scroll-thin::-webkit-scrollbar { width: 6px; height: 6px; }
 .scroll-thin::-webkit-scrollbar-thumb { background: #27272a; border-radius: 99px; }
 
-/* AI comments inside the editor */
 .ai-comment {
   color: #fbbf24;
   font-style: italic;
